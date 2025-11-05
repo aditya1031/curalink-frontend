@@ -46,7 +46,7 @@ const PatientDashboard = () => {
           return;
         }
 
-        const res = await axios.get(`http://localhost:5000/api/patient/${email}`);
+        const res = await axios.get(`https://curalink-server-production.up.railway.app/api/patient/${email}`);
         setPatient(res.data);
       } catch (err) {
         console.error("❌ Patient fetch failed:", err);
@@ -64,11 +64,11 @@ const PatientDashboard = () => {
       setLoading(true);
 
       const [pubmedRes, trialsRes, scholarRes, orcidRes, rgRes] = await Promise.allSettled([
-        axios.get(`http://localhost:5000/api/patient-data/pubmed?query=${encodeURIComponent(q)}`),
-        axios.get(`http://localhost:5000/api/patient-data/trials?condition=${encodeURIComponent(q)}`),
-        axios.get(`http://localhost:5000/api/patient-data/scholar?topic=${encodeURIComponent(q)}`),
-        axios.get(`http://localhost:5000/api/patient-data/orcid?name=${encodeURIComponent(q)}`),
-        axios.get(`http://localhost:5000/api/patient-data/researchgate?topic=${encodeURIComponent(q)}`),
+        axios.get(`https://curalink-server-production.up.railway.app/api/patient-data/pubmed?query=${encodeURIComponent(q)}`),
+        axios.get(`https://curalink-server-production.up.railway.app/api/patient-data/trials?condition=${encodeURIComponent(q)}`),
+        axios.get(`https://curalink-server-production.up.railway.app/api/patient-data/scholar?topic=${encodeURIComponent(q)}`),
+        axios.get(`https://curalink-server-production.up.railway.app/api/patient-data/orcid?name=${encodeURIComponent(q)}`),
+        axios.get(`https://curalink-server-production.up.railway.app/api/patient-data/researchgate?topic=${encodeURIComponent(q)}`),
       ]);
 
       setData((prev) => ({
@@ -95,7 +95,7 @@ const PatientDashboard = () => {
 
     try {
       setSummaryLoading(true);
-      const res = await axios.post("http://localhost:5000/api/ai-summary", {
+      const res = await axios.post("https://curalink-server-production.up.railway.app/api/ai-summary", {
         symptoms: symptomsInput,
       });
       setAiSummary(res.data.summary);
