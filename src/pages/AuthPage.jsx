@@ -37,7 +37,7 @@ const AuthPage = () => {
     try {
       if (isLogin) {
         // ✅ LOGIN
-        const res = await fetch("http://localhost:5000/api/login", {
+        const res = await fetch("https://curalink-server-production.up.railway.app/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: form.email, password: form.password }),
@@ -70,7 +70,7 @@ const AuthPage = () => {
           age: form.age ? parseInt(form.age) : null,
         };
 
-        const res = await fetch("http://localhost:5000/api/register", {
+        const res = await fetch("https://curalink-server-production.up.railway.app/api/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(cleanForm),
