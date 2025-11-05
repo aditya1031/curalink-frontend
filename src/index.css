@@ -1,0 +1,217 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------
+   Modular scale & spacing
+   ------------------------- */
+:root {
+  --ms-step-0: 0.75rem;
+  --ms-step-1: 1rem;
+  --ms-step-2: 1.25rem;
+  --ms-step-3: 1.5rem;
+  --ms-step-4: 2rem;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --elevation-1: 0 6px 18px rgba(3, 19, 31, 0.08);
+  --elevation-2: 0 10px 30px rgba(3, 19, 31, 0.10);
+  --transition-fast: 180ms cubic-bezier(.2, .9, .3, 1);
+  --transition-medium: 320ms cubic-bezier(.2, .9, .3, 1);
+  --content-max-width: 1100px;
+}
+
+/* -------------------------
+   Color system (single light theme)
+   ------------------------- */
+:root {
+  --h-primary: 203;
+  --s-primary: 65%;
+  --l-primary: 56%;
+
+  --color-primary: hsl(var(--h-primary) var(--s-primary) var(--l-primary));
+  --color-primary-600: hsl(var(--h-primary) 70% 46%);
+  --color-primary-400: hsl(var(--h-primary) 60% 66%);
+
+  --h-accent: calc((var(--h-primary) + 160) % 360);
+  --color-accent: hsl(var(--h-accent) 68% 52%);
+  --color-accent-600: hsl(var(--h-accent) 72% 44%);
+  --color-accent-300: hsl(var(--h-accent) 50% 72%);
+
+  --neutral-100: hsl(210 20% 98%);
+  --neutral-200: hsl(210 18% 96%);
+  --neutral-400: hsl(210 12% 84%);
+  --neutral-600: hsl(210 10% 60%);
+  --neutral-800: hsl(210 12% 18%);
+
+  --text: hsl(210 12% 12%);
+  --bg: linear-gradient(180deg, var(--neutral-100), var(--neutral-200));
+  --surface: var(--neutral-100);
+  --muted-surface: var(--neutral-200);
+  --muted: var(--neutral-600);
+  --accent: var(--color-accent-600);
+  --primary: var(--color-primary-600);
+}
+
+/* -------------------------
+   Base document styles
+   ------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: clamp(14px, 1.02rem, 16px);
+  line-height: 1.45;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background var(--transition-medium), color var(--transition-medium);
+}
+
+.container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--ms-step-4) var(--ms-step-2);
+}
+
+/* -------------------------
+   Headings
+   ------------------------- */
+h1 {
+  font-size: clamp(1.6rem, 2.4vw, 2.25rem);
+  margin-bottom: var(--ms-step-2);
+  color: var(--primary);
+}
+
+h2 {
+  font-size: clamp(1.2rem, 1.4vw, 1.6rem);
+  color: var(--primary);
+}
+
+/* -------------------------
+   Links
+   ------------------------- */
+a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  filter: brightness(1.05);
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Buttons
+   ------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, var(--accent), var(--color-accent));
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+  box-shadow: var(--elevation-1);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--elevation-2);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.997);
+}
+
+.btn--primary {
+  background: var(--primary);
+}
+
+.btn--accent {
+  background: var(--accent);
+}
+
+/* -------------------------
+   Cards
+   ------------------------- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--ms-step-3);
+  box-shadow: var(--elevation-1);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.card--hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--elevation-2);
+}
+
+/* -------------------------
+   Inputs & Textareas
+   ------------------------- */
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--neutral-400);
+  background: var(--surface);
+  color: var(--text);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 30%, transparent);
+  outline: none;
+}
+
+/* -------------------------
+   Footer
+   ------------------------- */
+.footer {
+  padding: var(--ms-step-3) 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* -------------------------
+   Utility classes
+   ------------------------- */
+.row {
+  display: flex;
+  gap: var(--ms-step-2);
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ms-step-2);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
